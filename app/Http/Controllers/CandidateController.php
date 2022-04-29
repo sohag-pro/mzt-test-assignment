@@ -51,6 +51,7 @@ class CandidateController extends Controller {
      * Hire a candidate.
      *
      * @param Request $request
+     * @return Response
      */
     public function hire( CandidateHireRequest $request ) {
         $candidateId = $request->input( 'candidate_id' );
