@@ -1,5 +1,6 @@
 
 # MyZenTeam code test assignment
+ *Setup instructions are given below*
 
 ## Description
 
@@ -35,8 +36,65 @@ While doing this test assignment, please pay attention to these aspects:
 - The emails that should be sent to the candidates can consist of only text, no design is needed.
 
 
-_**This app was created only for the purpose of the test assignment and code quality in this repository DOES NOT represent code quality in MyZenTeam.**_
+# Get started
 
-## Get started
+#### Cases covered in the test assignment
+1. Company can not hire a candidate who they have not contacted before.
+2. Company can not hire a candidate who has already been hired.
+3. Company can not contact a candidate who has already been contacted.
 
-Use this repository as your starting point, but **DO NOT** fork it. Create a public repository on GitHub for your application source code, push it and send the link to us.
+## Minimum System Requirments
+1. PHP 8+
+2. composer 2
+3. npm 8
+
+## How to setup
+1. Clone the repository
+    ```
+    git clone https://github.com/sohag-pro/mzt-test-assignment.git
+    ```
+2. Copy the .env.example to .env
+    ```
+    cp .env.example .env
+    ```
+3. Create a new Database and add credentials in `.env`
+
+4. Download php dependency with composer
+    ```
+    composer install
+    ```
+5. Download JS dependency with npm
+    ```
+    npm install
+    ```
+6. Run npm run watch (While developing)
+    ```
+    npm run watch
+    ```
+7. Run npm run prod (Need to run each time you push the code to production)
+    ```
+    npm run prod
+    ```
+8. Run this command to create databse tables and seed data
+    ```
+    php artisan migrate:fresh --seed
+    ``` 
+9. Run this command to generate the app key
+    ```
+    php artisan key:generate
+    ```
+10. Run this command to start the server (While developing or running on local server)
+    ```
+    php artisan serve
+    ```
+11. Run this command to start the queue listener (Needed to send emails)
+    ```
+    php artisan queue:listen
+    ```
+
+
+
+### Note:
+If you want to add something in CSS or JS,
+Please add them in `resources\css\app.css` and `resources\js\app.js`
+And then run `npm run dev` or `npm run prod`
