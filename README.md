@@ -98,8 +98,8 @@ While doing this test assignment, please pay attention to these aspects:
 
 
 
-### Note:
-- If you want to change the coin charges, you can change from env file.
+## Special Notes:
+- If you want to change the **coin charges**, you can change from env file.
 - If you want to add something in CSS or JS,
     Please add them in `resources\css\app.css` and `resources\js\app.js`
     And then run `npm run dev` or `npm run prod`
