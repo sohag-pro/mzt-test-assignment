@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Candidate;
 use App\Mail\CandidateHire;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CandidateHireService {
     /**
@@ -60,6 +61,7 @@ class CandidateHireService {
             ];
         }
 
+        $this->_sendHireEmail();
         $this->candidate->hire( $this->company->id );
 
         return [
@@ -86,8 +88,7 @@ class CandidateHireService {
         return true;
     }
 
-    private function _sendHireEmail()
-    {
+    private function _sendHireEmail() {
         Mail::to( $this->candidate )->queue( new CandidateHire( $this->company ) );
     }
 
