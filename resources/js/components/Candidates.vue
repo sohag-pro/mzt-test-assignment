@@ -20,8 +20,25 @@
         class="rounded overflow-hidden shadow-lg"
       >
         <img class="w-full" src="/avatar.png" alt="" />
+
         <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">{{ candidate.name }}</div>
+          <div class="font-bold text-xl mb-2">
+            {{ candidate.name }}
+            <span
+              v-if="hiresArr.includes(candidate.id)"
+              class="
+                inline-block
+                bg-green-600
+                rounded-full
+                px-3
+                py-1
+                text-sm
+                font-semibold
+                text-white
+              "
+              >Hired</span
+            >
+          </div>
           <p class="text-gray-700 text-base">{{ candidate.description }}</p>
         </div>
         <div class="px-6 pt-4 pb-2">
@@ -85,7 +102,12 @@
 
 <script>
 export default {
-  props: ["candidates"],
+  props: ["candidates", "hires"],
+  data: function () {
+    return {
+      hiresArr: this.hires,
+    };
+  },
   methods: {
     Contact(candidate_id) {
       axios
@@ -110,9 +132,15 @@ export default {
         })
         .catch(function (error) {
           console.log(error);
+          Vue.swal({
+            icon: "error",
+            title: "Oops...",
+            text: "Something Weng Wrong",
+          });
         });
     },
     Hire(candidate_id) {
+      let hiresArr = this.$data.hiresArr;
       axios
         .post("/candidates-hire", {
           candidate_id,
@@ -125,6 +153,7 @@ export default {
               title: "Success!",
               text: response.data.message,
             });
+            hiresArr.push(candidate_id);
           } else {
             Vue.swal({
               icon: "error",
@@ -135,7 +164,13 @@ export default {
         })
         .catch(function (error) {
           console.log(error);
+          Vue.swal({
+            icon: "error",
+            title: "Oops...",
+            text: "Something Weng Wrong",
+          });
         });
+      this.$data.hiresArr = hiresArr;
     },
   },
 };

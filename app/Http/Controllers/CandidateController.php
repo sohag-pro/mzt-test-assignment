@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\CandidateContact;
 use App\Services\CandidateHireService;
 use App\Services\CandidateContactService;
 use App\Http\Requests\CandidateHireRequest;
@@ -19,7 +20,12 @@ class CandidateController extends Controller {
     public function index() {
         $candidates = Candidate::all();
         $coins      = Company::find( 1 )->wallet->coins;
-        return view( 'candidates.index', compact( 'candidates', 'coins' ) );
+        $hires      = CandidateContact::where( 'company_id', 1 )
+            ->where( 'is_hired', true )
+            ->get( ['candidate_id'] )
+            ->pluck( ['candidate_id'] )
+            ->toArray();
+        return view( 'candidates.index', compact( 'candidates', 'coins', 'hires' ) );
     }
 
     /**
