@@ -111,7 +111,7 @@ export default {
   methods: {
     Contact(candidate_id) {
       axios
-        .post("/candidates-contact", {
+        .post("/candidates/contact", {
           candidate_id,
         })
         .then(function (response) {
@@ -141,7 +141,7 @@ export default {
     Hire(candidate_id) {
       let hiresArr = this.$data.hiresArr;
       axios
-        .post("/candidates-hire", {
+        .post("/candidates/hire", {
           candidate_id,
         })
         .then(function (response) {

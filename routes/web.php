@@ -14,10 +14,10 @@ use App\Http\Controllers\CandidateController;
 |
  */
 
-Route::get( '/', function () {
-    return view( 'homepage' );
-} );
+Route::view( '/', 'homepage' );
 
-Route::get( 'candidates-list', [CandidateController::class, 'index'] );
-Route::post( 'candidates-contact', [CandidateController::class, 'contact'] );
-Route::post( 'candidates-hire', [CandidateController::class, 'hire'] );
+Route::controller( CandidateController::class )->prefix( 'candidates' )->group( function () {
+    Route::get( '/list', 'index' );
+    Route::post( '/contact', 'contact' );
+    Route::post( '/hire', 'hire' );
+} );
