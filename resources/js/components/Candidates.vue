@@ -115,7 +115,6 @@ export default {
           candidate_id,
         })
         .then(function (response) {
-          console.log(response.data);
           if (response.data.success) {
             Vue.swal({
               icon: "success",
@@ -146,7 +145,6 @@ export default {
           candidate_id,
         })
         .then(function (response) {
-          console.log(response.data);
           if (response.data.success) {
             Vue.swal({
               icon: "success",
