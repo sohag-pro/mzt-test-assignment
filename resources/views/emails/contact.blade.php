@@ -1,0 +1,1 @@
+You are contacted by {!! $company->name !!}

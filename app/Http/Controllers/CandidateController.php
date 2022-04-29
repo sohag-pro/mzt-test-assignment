@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Candidate;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Services\CandidateContactService;
+use App\Http\Requests\CandidateContactRequest;
 
 class CandidateController extends Controller {
 
@@ -16,12 +20,31 @@ class CandidateController extends Controller {
         return view( 'candidates.index', compact( 'candidates', 'coins' ) );
     }
 
-    public function contact() {
-        // @todo
-        // Your code goes here...
+    /**
+     * Contact a candidate.
+     *
+     * @param  Request    $request
+     * @return Response
+     */
+    public function contact( CandidateContactRequest $request ) {
+        $candidateId = $request->input( 'candidate_id' );
+        try {
+            return response()->json(( new CandidateContactService( $candidateId, 1 ) )->contact()); 
+        } catch ( \Throwable$th ) {
+            info( $th->getMessage() );
+            return [
+                'success' => false,
+                'message' => 'Something went wrong. Please try again later.',
+            ];
+        }
     }
 
-    public function hire() {
+    /**
+     * Hire a candidate.
+     *
+     * @param Request $request
+     */
+    public function hire( Request $request ) {
         // @todo
         // Your code goes here...
     }
