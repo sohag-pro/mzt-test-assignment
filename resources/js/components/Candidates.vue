@@ -94,13 +94,13 @@ export default {
         })
         .then(function (response) {
           console.log(response.data);
-          if(response.data.success){
+          if (response.data.success) {
             Vue.swal({
               icon: "success",
               title: "Success!",
               text: response.data.message,
             });
-          }else{
+          } else {
             Vue.swal({
               icon: "error",
               title: "Oops...",
@@ -112,8 +112,30 @@ export default {
           console.log(error);
         });
     },
-    Hire(id) {
-      console.log("Hire", id);
+    Hire(candidate_id) {
+      axios
+        .post("/candidates-hire", {
+          candidate_id,
+        })
+        .then(function (response) {
+          console.log(response.data);
+          if (response.data.success) {
+            Vue.swal({
+              icon: "success",
+              title: "Success!",
+              text: response.data.message,
+            });
+          } else {
+            Vue.swal({
+              icon: "error",
+              title: "Oops...",
+              text: response.data.message,
+            });
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
   },
 };

@@ -61,7 +61,7 @@ class CandidateContactService {
 
         $this->_sendContactEmail();
 
-        $this->_addContactToCandidate();
+        $this->candidate->contacted( $this->company->id );
 
         return [
             'success' => true,
@@ -89,11 +89,5 @@ class CandidateContactService {
 
     private function _sendContactEmail(): void {
         Mail::to( $this->candidate )->queue( new CandidateContact( $this->company ) );
-    }
-
-    private function _addContactToCandidate(): void {
-        $this->candidate->contacts()->firstOrCreate( [
-            'company_id' => $this->company->id,
-        ] );
     }
 }

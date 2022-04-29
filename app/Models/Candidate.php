@@ -25,4 +25,21 @@ class Candidate extends Model {
     public function isContacted( $companyId ) {
         return $this->contacts()->where( 'company_id', $companyId )->exists();
     }
+
+    public function contacted($companyId)
+    {
+        $this->contacts()->firstOrCreate( [
+            'company_id' => $companyId,
+        ] );
+    }
+
+    public function isHired( $companyId ) {
+        return $this->contacts()->where( 'company_id', $companyId )->where( 'is_hired', true )->exists();
+    }
+
+    public function hire( $companyId ) {
+        $this->contacts()->where( 'company_id', $companyId )->update( [
+            'is_hired' => true,
+        ] );
+    }
 }
