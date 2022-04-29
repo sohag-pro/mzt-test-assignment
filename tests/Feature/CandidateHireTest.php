@@ -17,7 +17,7 @@ class CandidateHireTest extends TestCase
     public function test_without_contact_hire_should_be_failed()
     {
         Artisan::call('migrate:fresh --seed');
-        $response = $this->post('/candidates-hire', [
+        $response = $this->post('/candidates/hire', [
             'candidate_id' => 1
         ]);
 
@@ -31,10 +31,10 @@ class CandidateHireTest extends TestCase
      */
     public function test_contact_then_hire()
     {
-        $response = $this->post('/candidates-contact', [
+        $response = $this->post('/candidates/contact', [
             'candidate_id' => 1
         ]);
-        $response = $this->post('/candidates-hire', [
+        $response = $this->post('/candidates/hire', [
             'candidate_id' => 1
         ]);
 
@@ -47,7 +47,7 @@ class CandidateHireTest extends TestCase
      * @return void
      */
     public function test_after_hire_coins_sholud_be_more() {
-        $response = $this->get( '/candidates-list' );
+        $response = $this->get( '/candidates/list' );
         $response->assertSee('Your wallet has: 20 coins');
     }
 
@@ -58,14 +58,14 @@ class CandidateHireTest extends TestCase
      */
     public function test_hire_twice_should_be_failed()
     {
-        $response = $this->post('/candidates-contact', [
+        $response = $this->post('/candidates/contact', [
             'candidate_id' => 2
         ]);
-        $response = $this->post('/candidates-hire', [
+        $response = $this->post('/candidates/hire', [
             'candidate_id' => 2
         ]);
 
-        $response = $this->post('/candidates-hire', [
+        $response = $this->post('/candidates/hire', [
             'candidate_id' => 2
         ]);
 

@@ -14,7 +14,7 @@ class CandidateContactTest extends TestCase {
      */
     public function test_contact_candidate() {
         Artisan::call( 'migrate:fresh --seed' );
-        $response = $this->post( '/candidates-contact', [
+        $response = $this->post( '/candidates/contact', [
             'candidate_id' => 1,
         ] );
 
@@ -27,11 +27,11 @@ class CandidateContactTest extends TestCase {
      * @return void
      */
     public function test_contact_candidate_twice_should_be_failed() {
-        $response = $this->post( '/candidates-contact', [
+        $response = $this->post( '/candidates/contact', [
             'candidate_id' => 2,
         ] );
 
-        $response = $this->post( '/candidates-contact', [
+        $response = $this->post( '/candidates/contact', [
             'candidate_id' => 2,
         ] );
 
@@ -44,7 +44,7 @@ class CandidateContactTest extends TestCase {
      * @return void
      */
     public function test_after_contact_coins_sholud_be_less() {
-        $response = $this->get( '/candidates-list' );
+        $response = $this->get( '/candidates/list' );
         $response->assertSee('Your wallet has: 10 coins');
     }
 
@@ -56,7 +56,7 @@ class CandidateContactTest extends TestCase {
     public function test_contact_candidate_without_enough_token_should_be_failed() {
         Wallet::where( 'company_id', 1 )->update( ['coins' => 0] );
 
-        $response = $this->post( '/candidates-contact', [
+        $response = $this->post( '/candidates/contact', [
             'candidate_id' => 3,
         ] );
 
