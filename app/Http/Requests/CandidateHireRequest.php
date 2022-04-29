@@ -4,15 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CandidateHireRequest extends FormRequest
-{
+class CandidateHireRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,10 +19,9 @@ class CandidateHireRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'candidate_id' => 'required|exists:candidates,id'
+            'candidate_id' => 'required|exists:candidates,id',
         ];
     }
 }
