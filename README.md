@@ -53,41 +53,45 @@ While doing this test assignment, please pay attention to these aspects:
     ```
     git clone https://github.com/sohag-pro/mzt-test-assignment.git
     ```
-2. Copy the .env.example to .env
+2. Open the project folder
+    ```
+    cd mzt-test-assignment
+    ```
+3. Copy the .env.example to .env
     ```
     cp .env.example .env
     ```
-3. Create a new Database and add credentials in `.env`
+4. Create a new Database and add credentials in `.env`
 
-4. Download php dependency with composer
+5. Download php dependency with composer
     ```
     composer install
     ```
-5. Download JS dependency with npm
+6. Download JS dependency with npm
     ```
     npm install
     ```
-6. Run npm run watch (While developing)
+7. Run npm run watch (While developing)
     ```
     npm run watch
     ```
-7. Run npm run prod (Need to run each time you push the code to production)
+8. Run npm run prod (Need to run each time you push the code to production)
     ```
     npm run prod
     ```
-8. Run this command to create databse tables and seed data
+9. Run this command to create databse tables and seed data
     ```
     php artisan migrate:fresh --seed
     ``` 
-9. Run this command to generate the app key
+10. Run this command to generate the app key
     ```
     php artisan key:generate
     ```
-10. Run this command to start the server (While developing or running on local server)
+11. Run this command to start the server (While developing or running on local server)
     ```
     php artisan serve
     ```
-11. Run this command to start the queue listener (Needed to send emails)
+12. Run this command to start the queue listener (Needed to send emails)
     ```
     php artisan queue:listen
     ```
